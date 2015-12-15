@@ -1,0 +1,129 @@
+%\lstnewenvironment{idl}
+%{
+%\lstset{
+
+
+\newcommand{\idlPrompt}{\textbf{\footnotesize IDL\textgreater}\hspace{5pt}} %make a "IDL" prompt
+
+
+\lstdefinestyle{idl}{
+language = IDL, showspaces=false, showstringspaces=false, breaklines=true, 
+showtabs=true, tab=\idlPrompt, tabsize=4, 
+morestring=[b]", 
+escapechar=\%, aboveskip=2pt, belowskip=0pt, breakindent=10pt, prebreak={\$}, %extendedchars=false, 
+ keywords=[1]{%these are the bulit-in procedure/function names
+ %A
+ abs, alog, arg_present, array_equal, ARRAY_INDICES, assoc, axis, atan, 
+ %B
+ bytarr, byte, BYTSCL, 
+ %C
+ catch, cd, ceil, congrid, contour, cos, create_struct, cursor, call_function, call_routine, close, 
+ %D
+ dblarr, dialog_pickfile, delvar, deriv, device, dindgen, double, 
+ %E
+ eof, erase, exp, expand_path,
+ %F
+ fft, file_lines, file_search, file_test, findgen, fix, float, floor, fltarr, free_lun, finite, 
+ %G
+ %H
+ hash, heap_gc, help, hist_equal, histogram,
+ %I
+ indgen, int_tabulated, intarr, interpol, ishft,
+ %J
+ journal, julday, 
+ %K
+ keyword_set, 
+ %L
+ lindgen, loadct, logical_and, lonarr, long, list, 
+ %M
+ max, memory, message, min, map_proj_forward, median, 
+ %N
+ n_elements, n_params, n_tags, ncdf_open, ncdf_varget, ncdf_inquire, ncdf_attname, ncdf_attget, ncdf_varinq, ncdf_close, 
+ %O
+ on_error, openr, openu, openw, oplot, OBJ_NEW, OBJ_DESTROY, 
+ %P
+ path_sep, plot, plots, polyfill, ptr_free, ptr_new, ptr_valid, ptrarr, print, printf, 
+ %Q
+ %R
+ randomn, randomu, readf, reads, readu, rebin, reform, replicate, restore, return, round, ROTATE, REGRESS,
+ %S
+ save, setenv, shift, sin, size, sort, sqrt, stop, strarr, string, strmatch, strmid, strtrim, strsplit, strupcase, strlowcase, surface, systime, 
+ %T
+ tag_names, temporary, total, transpose, tv, tvlct, 
+ %U
+ uint, UINTARR, 
+ %V
+ value_locate, 
+ %W
+ wait, wdelete, where, widget_base, widget_draw, widget_button, widget_control, widget_info, widget_list, widget_combobox, widget_droplist, widget_label, window, wset, 
+ %X
+ xpalette, xyouts,
+ %Y
+ %Z
+},
+keywords=[3]{%user routines go here
+% these are routines used in ats509 notes only, not alphabetized:
+ats_takequiz, ats_plot_sounding, ats_plot_sounding_p2h, ats_dry_adiabat, ess_import_lma_flash, ess_get_lma_initiation, ess_plot_modis, ess_plot_modis_scale, ess_read_modis1b, 
+ats_import_armor_nc, ats_import_armor_nc_get_var, ats_radar_palette, ess_read_test_hamma, 
+%A
+ascii_template, add, 
+%C
+cgcolor, cgcolor24, cgcolorbar, cgcolorfill, cgcontour, cgcontrol, cghistoplot, cgimage, cgloadct, cgplot, cgplots, cgsnapshot, cgsurface, cgsymcat, cgsymbol, cgtext, cgwindow, cindex, cmset_op, cgdisplay, cgErase, cgMap_Set, cgMap, cgMap_Continents, cgMap_Grid, cgReverseIndices, cgMapGrid, cgPS_OPEN, cgPS_CLOSE, cgErrorMsg, cgscalevector,
+%D
+Draw, 
+%E
+error_message, extract_slice, EOS_QUERY, EOS_SW_INQSWATH, EOS_SW_QUERY, EOS_SW_OPEN, EOS_SW_READFIELD, EOS_SW_DETACH, EOS_SW_CLOSE, EOS_SW_ATTACH, 
+%F
+Forward, 
+%G
+getdecomposedstate, GetProperty, 
+%H
+hist_2d, hist_nd, 
+%I
+%J
+%K
+kurtosis, 
+%L
+linfit, 
+%M
+mean, moment, 
+%N
+ncdf_browser, 
+%O
+%P
+pmb_radar_palette, pmb_get_lma_initiation, pmb_import_lma_flash, pmb_plot_freq_spectrum, pmb_plot_radar_data, pmb_radar_gui, pmb_radar_gui_events, pmb_radar_gui_draw_events, pmb_radar_gui_cleanup, pmb_radar_gui_plot_radar, pmb_radar_gui_current_settings_get, pmb_radar_gui_load_radar, pmb_swap_plot_parameters, ps_start, ps_end, 
+%R
+read_ascii, readcol, reverse, 
+%S
+setdecomposedstate, skewness, stddev, SetProperty, 
+%T
+textoidl, tic, toc, toarray, 
+%U 
+%V
+%W
+%X
+xinteranimate, xmanager, 
+%Y
+%Z
+},
+ keywords=[2]{%operators go here
+ le, ge, eq, ne, and, lt, gt, or, xor, if, for, foreach, then, else, begin, end, endelse, while, not, case, endcase, of, pro, 
+ 	function, mod, do, endif, compile_opt, endfor, repeat, switch, continue, break, goto, endwhile},
+  basicstyle=\usefont{T1}{fvm}{m}{n}, 
+  stringstyle=\color{red}\usefont{T1}{fvm}{m}{n},
+  commentstyle=\color{dkgreen}\usefont{T1}{fvm}{m}{n}, 
+	keywordstyle={[1]\color{blue}\usefont{T1}{fvm}{b}{n}},
+	keywordstyle={[2]\color{maroon}\usefont{T1}{fvm}{b}{n}},
+	keywordstyle={[3]\color{turq}\usefont{T1}{fvm}{b}{n}},
+literate=% start making a whole mess of literate replacements for numbers...is there a way to do this with a loop?
+%*{/abs}{{{\color{goldenrod}/abs}}}4
+*{-}{-}1%dash-hyphen fix
+{0}{{{\color{goldenrod}0}}}1{1}{{{\color{goldenrod}1}}}1{2}{{{\color{goldenrod}2}}}1{3}{{{\color{goldenrod}3}}}1{4}{{{\color{goldenrod}4}}}1{5}{{{\color{goldenrod}5}}}1{6}{{{\color{goldenrod}6}}}1{7}{{{\color{goldenrod}7}}}1{8}{{{\color{goldenrod}8}}}1{9}{{{\color{goldenrod}9}}}1
+%{0B}{{{\color{goldenrod}0B}}}2{1B}{{{\color{goldenrod}1B}}}2{2B}{{{\color{goldenrod}2B}}}2{3B}{{{\color{goldenrod}3B}}}2{4B}{{{\color{goldenrod}4B}}}2{5B}{{{\color{goldenrod}5B}}}2{6B}{{{\color{goldenrod}6B}}}2{7B}{{{\color{goldenrod}7B}}}2{8B}{{{\color{goldenrod}8B}}}2{9B}{{{\color{goldenrod}9B}}}2{0U}{{{\color{goldenrod}0U}}}2{1U}{{{\color{goldenrod}1U}}}2{2U}{{{\color{goldenrod}2U}}}2{3U}{{{\color{goldenrod}3U}}}2{4U}{{{\color{goldenrod}4U}}}2{5U}{{{\color{goldenrod}5U}}}2{6U}{{{\color{goldenrod}6U}}}2{7U}{{{\color{goldenrod}7U}}}2{8U}{{{\color{goldenrod}8U}}}2{9U}{{{\color{goldenrod}9U}}}2{0L}{{{\color{goldenrod}0L}}}2{1L}{{{\color{goldenrod}1L}}}2{2L}{{{\color{goldenrod}2L}}}2{3L}{{{\color{goldenrod}3L}}}2{4L}{{{\color{goldenrod}4L}}}2{5L}{{{\color{goldenrod}5L}}}2{6L}{{{\color{goldenrod}6L}}}2{7L}{{{\color{goldenrod}7L}}}2{8L}{{{\color{goldenrod}8L}}}2{9L}{{{\color{goldenrod}9L}}}2{0UL}{{{\color{goldenrod}0UL}}}3{1UL}{{{\color{goldenrod}1UL}}}3{2UL}{{{\color{goldenrod}2UL}}}3{3UL}{{{\color{goldenrod}3UL}}}3{4UL}{{{\color{goldenrod}4UL}}}3{5UL}{{{\color{goldenrod}5UL}}}3{6UL}{{{\color{goldenrod}6UL}}}3{7UL}{{{\color{goldenrod}7UL}}}3{8UL}{{{\color{goldenrod}8UL}}}3{9UL}{{{\color{goldenrod}9UL}}}3{0LL}{{{\color{goldenrod}0LL}}}3{1LL}{{{\color{goldenrod}1LL}}}3{2LL}{{{\color{goldenrod}2LL}}}3{3LL}{{{\color{goldenrod}3LL}}}3{4LL}{{{\color{goldenrod}4LL}}}3{5LL}{{{\color{goldenrod}5LL}}}3{6LL}{{{\color{goldenrod}6LL}}}3{7LL}{{{\color{goldenrod}7LL}}}3{8LL}{{{\color{goldenrod}8LL}}}3{9LL}{{{\color{goldenrod}9LL}}}3{0ULL}{{{\color{goldenrod}0ULL}}}4{1ULL}{{{\color{goldenrod}1ULL}}}4{2ULL}{{{\color{goldenrod}2ULL}}}4{3ULL}{{{\color{goldenrod}3ULL}}}4{4ULL}{{{\color{goldenrod}4ULL}}}4{5ULL}{{{\color{goldenrod}5ULL}}}4{6ULL}{{{\color{goldenrod}6ULL}}}4{7ULL}{{{\color{goldenrod}7ULL}}}4{8ULL}{{{\color{goldenrod}8ULL}}}4{9ULL}{{{\color{goldenrod}9ULL}}}4{0b}{{{\color{goldenrod}0b}}}2{1b}{{{\color{goldenrod}1b}}}2{2b}{{{\color{goldenrod}2b}}}2{3b}{{{\color{goldenrod}3b}}}2{4b}{{{\color{goldenrod}4b}}}2{5b}{{{\color{goldenrod}5b}}}2{6b}{{{\color{goldenrod}6b}}}2{7b}{{{\color{goldenrod}7b}}}2{8b}{{{\color{goldenrod}8b}}}2{9b}{{{\color{goldenrod}9b}}}2{0u}{{{\color{goldenrod}0u}}}2{1u}{{{\color{goldenrod}1u}}}2{2u}{{{\color{goldenrod}2u}}}2{3u}{{{\color{goldenrod}3u}}}2{4u}{{{\color{goldenrod}4u}}}2{5u}{{{\color{goldenrod}5u}}}2{6u}{{{\color{goldenrod}6u}}}2{7u}{{{\color{goldenrod}7u}}}2{8u}{{{\color{goldenrod}8u}}}2{9u}{{{\color{goldenrod}9u}}}2{0l}{{{\color{goldenrod}0l}}}2{1l}{{{\color{goldenrod}1l}}}2{2l}{{{\color{goldenrod}2l}}}2{3l}{{{\color{goldenrod}3l}}}2{4l}{{{\color{goldenrod}4l}}}2{5l}{{{\color{goldenrod}5l}}}2{6l}{{{\color{goldenrod}6l}}}2{7l}{{{\color{goldenrod}7l}}}2{8l}{{{\color{goldenrod}8l}}}2{9l}{{{\color{goldenrod}9l}}}2{0ul}{{{\color{goldenrod}0ul}}}3{1ul}{{{\color{goldenrod}1ul}}}3{2ul}{{{\color{goldenrod}2ul}}}3{3ul}{{{\color{goldenrod}3ul}}}3{4ul}{{{\color{goldenrod}4ul}}}3{5ul}{{{\color{goldenrod}5ul}}}3{6ul}{{{\color{goldenrod}6ul}}}3{7ul}{{{\color{goldenrod}7ul}}}3{8ul}{{{\color{goldenrod}8ul}}}3{9ul}{{{\color{goldenrod}9ul}}}3{0ll}{{{\color{goldenrod}0ll}}}3{1ll}{{{\color{goldenrod}1ll}}}3{2ll}{{{\color{goldenrod}2ll}}}3{3ll}{{{\color{goldenrod}3ll}}}3{4ll}{{{\color{goldenrod}4ll}}}3{5ll}{{{\color{goldenrod}5ll}}}3{6ll}{{{\color{goldenrod}6ll}}}3{7ll}{{{\color{goldenrod}7ll}}}3{8ll}{{{\color{goldenrod}8ll}}}3{9ll}{{{\color{goldenrod}9ll}}}3{0ull}{{{\color{goldenrod}0ull}}}4{1ull}{{{\color{goldenrod}1ull}}}4{2ull}{{{\color{goldenrod}2ull}}}4{3ull}{{{\color{goldenrod}3ull}}}4{4ull}{{{\color{goldenrod}4ull}}}4{5ull}{{{\color{goldenrod}5ull}}}4{6ull}{{{\color{goldenrod}6ull}}}4{7ull}{{{\color{goldenrod}7ull}}}4{8ull}{{{\color{goldenrod}8ull}}}4{9ull}{{{\color{goldenrod}9ull}}}4{a0}{{{a0}}}2{a1}{{{a1}}}2{a2}{{{a2}}}2{a3}{{{a3}}}2{a4}{{{a4}}}2{a5}{{{a5}}}2{a6}{{{a6}}}2{a7}{{{a7}}}2{a8}{{{a8}}}2{a9}{{{a9}}}2{b0}{{{b0}}}2{b1}{{{b1}}}2{b2}{{{b2}}}2{b3}{{{b3}}}2{b4}{{{b4}}}2{b5}{{{b5}}}2{b6}{{{b6}}}2{b7}{{{b7}}}2{b8}{{{b8}}}2{b9}{{{b9}}}2{c0}{{{c0}}}2{c1}{{{c1}}}2{c2}{{{c2}}}2{c3}{{{c3}}}2{c4}{{{c4}}}2{c5}{{{c5}}}2{c6}{{{c6}}}2{c7}{{{c7}}}2{c8}{{{c8}}}2{c9}{{{c9}}}2{d0}{{{d0}}}2{d1}{{{d1}}}2{d2}{{{d2}}}2{d3}{{{d3}}}2{d4}{{{d4}}}2{d5}{{{d5}}}2{d6}{{{d6}}}2{d7}{{{d7}}}2{d8}{{{d8}}}2{d9}{{{d9}}}2{e0}{{{e0}}}2{e1}{{{e1}}}2{e2}{{{e2}}}2{e3}{{{e3}}}2{e4}{{{e4}}}2{e5}{{{e5}}}2{e6}{{{e6}}}2{e7}{{{e7}}}2{e8}{{{e8}}}2{e9}{{{e9}}}2{f0}{{{f0}}}2{f1}{{{f1}}}2{f2}{{{f2}}}2{f3}{{{f3}}}2{f4}{{{f4}}}2{f5}{{{f5}}}2{f6}{{{f6}}}2{f7}{{{f7}}}2{f8}{{{f8}}}2{f9}{{{f9}}}2{g0}{{{g0}}}2{g1}{{{g1}}}2{g2}{{{g2}}}2{g3}{{{g3}}}2{g4}{{{g4}}}2{g5}{{{g5}}}2{g6}{{{g6}}}2{g7}{{{g7}}}2{g8}{{{g8}}}2{g9}{{{g9}}}2{h0}{{{h0}}}2{h1}{{{h1}}}2{h2}{{{h2}}}2{h3}{{{h3}}}2{h4}{{{h4}}}2{h5}{{{h5}}}2{h6}{{{h6}}}2{h7}{{{h7}}}2{h8}{{{h8}}}2{h9}{{{h9}}}2{i0}{{{i0}}}2{i1}{{{i1}}}2{i2}{{{i2}}}2{i3}{{{i3}}}2{i4}{{{i4}}}2{i5}{{{i5}}}2{i6}{{{i6}}}2{i7}{{{i7}}}2{i8}{{{i8}}}2{i9}{{{i9}}}2{j0}{{{j0}}}2{j1}{{{j1}}}2{j2}{{{j2}}}2{j3}{{{j3}}}2{j4}{{{j4}}}2{j5}{{{j5}}}2{j6}{{{j6}}}2{j7}{{{j7}}}2{j8}{{{j8}}}2{j9}{{{j9}}}2{k0}{{{k0}}}2{k1}{{{k1}}}2{k2}{{{k2}}}2{k3}{{{k3}}}2{k4}{{{k4}}}2{k5}{{{k5}}}2{k6}{{{k6}}}2{k7}{{{k7}}}2{k8}{{{k8}}}2{k9}{{{k9}}}2{l0}{{{l0}}}2{l1}{{{l1}}}2{l2}{{{l2}}}2{l3}{{{l3}}}2{l4}{{{l4}}}2{l5}{{{l5}}}2{l6}{{{l6}}}2{l7}{{{l7}}}2{l8}{{{l8}}}2{l9}{{{l9}}}2{m0}{{{m0}}}2{m1}{{{m1}}}2{m2}{{{m2}}}2{m3}{{{m3}}}2{m4}{{{m4}}}2{m5}{{{m5}}}2{m6}{{{m6}}}2{m7}{{{m7}}}2{m8}{{{m8}}}2{m9}{{{m9}}}2{n0}{{{n0}}}2{n1}{{{n1}}}2{n2}{{{n2}}}2{n3}{{{n3}}}2{n4}{{{n4}}}2{n5}{{{n5}}}2{n6}{{{n6}}}2{n7}{{{n7}}}2{n8}{{{n8}}}2{n9}{{{n9}}}2{o0}{{{o0}}}2{o1}{{{o1}}}2{o2}{{{o2}}}2{o3}{{{o3}}}2{o4}{{{o4}}}2{o5}{{{o5}}}2{o6}{{{o6}}}2{o7}{{{o7}}}2{o8}{{{o8}}}2{o9}{{{o9}}}2{p0}{{{p0}}}2{p1}{{{p1}}}2{p2}{{{p2}}}2{p3}{{{p3}}}2{p4}{{{p4}}}2{p5}{{{p5}}}2{p6}{{{p6}}}2{p7}{{{p7}}}2{p8}{{{p8}}}2{p9}{{{p9}}}2{q0}{{{q0}}}2{q1}{{{q1}}}2{q2}{{{q2}}}2{q3}{{{q3}}}2{q4}{{{q4}}}2{q5}{{{q5}}}2{q6}{{{q6}}}2{q7}{{{q7}}}2{q8}{{{q8}}}2{q9}{{{q9}}}2{r0}{{{r0}}}2{r1}{{{r1}}}2{r2}{{{r2}}}2{r3}{{{r3}}}2{r4}{{{r4}}}2{r5}{{{r5}}}2{r6}{{{r6}}}2{r7}{{{r7}}}2{r8}{{{r8}}}2{r9}{{{r9}}}2{s0}{{{s0}}}2{s1}{{{s1}}}2{s2}{{{s2}}}2{s3}{{{s3}}}2{s4}{{{s4}}}2{s5}{{{s5}}}2{s6}{{{s6}}}2{s7}{{{s7}}}2{s8}{{{s8}}}2{s9}{{{s9}}}2{t0}{{{t0}}}2{t1}{{{t1}}}2{t2}{{{t2}}}2{t3}{{{t3}}}2{t4}{{{t4}}}2{t5}{{{t5}}}2{t6}{{{t6}}}2{t7}{{{t7}}}2{t8}{{{t8}}}2{t9}{{{t9}}}2{u0}{{{u0}}}2{u1}{{{u1}}}2{u2}{{{u2}}}2{u3}{{{u3}}}2{u4}{{{u4}}}2{u5}{{{u5}}}2{u6}{{{u6}}}2{u7}{{{u7}}}2{u8}{{{u8}}}2{u9}{{{u9}}}2{v0}{{{v0}}}2{v1}{{{v1}}}2{v2}{{{v2}}}2{v3}{{{v3}}}2{v4}{{{v4}}}2{v5}{{{v5}}}2{v6}{{{v6}}}2{v7}{{{v7}}}2{v8}{{{v8}}}2{v9}{{{v9}}}2{w0}{{{w0}}}2{w1}{{{w1}}}2{w2}{{{w2}}}2{w3}{{{w3}}}2{w4}{{{w4}}}2{w5}{{{w5}}}2{w6}{{{w6}}}2{w7}{{{w7}}}2{w8}{{{w8}}}2{w9}{{{w9}}}2{x0}{{{x0}}}2{x1}{{{x1}}}2{x2}{{{x2}}}2{x3}{{{x3}}}2{x4}{{{x4}}}2{x5}{{{x5}}}2{x6}{{{x6}}}2{x7}{{{x7}}}2{x8}{{{x8}}}2{x9}{{{x9}}}2{y0}{{{y0}}}2{y1}{{{y1}}}2{y2}{{{y2}}}2{y3}{{{y3}}}2{y4}{{{y4}}}2{y5}{{{y5}}}2{y6}{{{y6}}}2{y7}{{{y7}}}2{y8}{{{y8}}}2{y9}{{{y9}}}2{z0}{{{z0}}}2{z1}{{{z1}}}2{z2}{{{z2}}}2{z3}{{{z3}}}2{z4}{{{z4}}}2{z5}{{{z5}}}2{z6}{{{z6}}}2{z7}{{{z7}}}2{z8}{{{z8}}}2{z9}{{{z9}}}2
+}
+
+
+\newcommand{\idlinline}[1]{\lstinline[style=idl] | #1 |} %define a inline command
+
+\lstnewenvironment{idl}[1][]{\lstset{style=idl}}{} %define an enviornment
+

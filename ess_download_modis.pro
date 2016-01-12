@@ -18,42 +18,6 @@
 ;    All rights reserved.
 ;-
 
-FUNCTION ess_download_modis_zerofill, strIn, fill
-;+
-; Helper function for main ess_download_modis routine.
-; This routine formats string parameters of MODIS filenames
-; to zero-fill numbers to a designated length.
-; 
-; :Params:
-;   strIn : in, required, type=string
-;     the input spring to be zero-filled
-;   fill : in, required, type=integer scalar
-;     the number of characters the output must fill 
-; :Keywords:
-;   none
-; :Uses:
-;   none
-;-
-
-compile_opt idl2
-
-;format strIn by converting to a string and removing all leading spaces
-strIn = STRTRIM( STRING(strIn),1 )
-
-;determine the number of leading zeros needed
-zf = fill - STRLEN(strIn)
-
-;conditionally add leading zeros to the parameter
-IF zf EQ 2 THEN zFill = '00' + strIn $
-  ELSE IF zf EQ 1 THEN zFILL = '0' + strIn $
-  ELSE zFill = strIn
-
-;return the result
-RETURN, zFill
-
-END ; ess_download_modis_zerofill
-
-
 FUNCTION ess_download_modis, imgProd, imgYear, imgDate, imgHgrid, imgVgrid, $
                   dualSat=dsat
 
@@ -111,9 +75,9 @@ ENDIF
 ;format input parameters as strings and zero−fill
 prod = STRUPCASE(imgProd)
 year = STRING(imgYear)
-date = ess_download_modis_zerofill(imgDate, 3)
-hInd = ess_download_modis_zerofill(imgHgrid, 2)
-vInd = ess_download_modis_zerofill(imgVgrid, 2)
+date = STRING(imgDate, FORMAT="(I03)")
+hInd = STRING(imgHgrid, FORMAT="(I02)")
+vInd = STRING(imgVgrid, FORMAT="(I02)")
 
 ;build the partial filename
 partialFname = STRJOIN(STRSPLIT(prod + '.A' + year + date + '.h' $
@@ -147,18 +111,19 @@ result = oUrl->GetFtpDirList(/SHORT)
 
 ;search for and store "long" file name of desired image
 ind = WHERE(partialFname EQ STRMID(result, 0, STRLEN(partialFName) ), count)
-fName = result[ind]
+fName = result[ind[0]]
+
 
 ;change directories to the desired file
-oUrl->SetProperty, URL_PATH = urlPath + fName[0]
+oUrl->SetProperty, URL_PATH = urlPath + fName
 
 ;"get" the file
-void = oURL->Get(FILENAME=fName[0])
+void = oURL->Get(FILENAME=fName)
 
 ;object cleanup
 OBJ_DESTROY, oUrl
 
-RETURN, fName[0]
+RETURN, fName
 
 END ; ess_download_modis
 
